@@ -1,6 +1,8 @@
+"use client"
+
 import { Button } from '@/components/ui/button'
 import { PlusIcon } from "lucide-react"
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import React, { FC } from 'react'
 
 interface HeaderProps {

@@ -1,11 +1,28 @@
-import { Button } from '@/components/ui/button'
-import React, { FC } from 'react'
+"use client"
 
-interface PostProps {
+import { jobFormSchema } from '@/lib/form-schema'
+import React, { FC } from 'react'
+import { useForm } from "react-hook-form";
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+
+interface PostJobPageProps {
 
 }
 
-const Post: FC<PostProps> = ({ }) => {
+const PostJobPage: FC<PostJobPageProps> = ({ }) => {
+    const form = useForm<z.infer<typeof jobFormSchema>>({
+        resolver: zodResolver(jobFormSchema),
+        defaultValues: {
+            requiredSkills: []
+        }
+    })
+
+    const onSubmit = (val: z.infer<typeof jobFormSchema>) => {
+        console.log(val)
+    }
+
+
     return (
         <div>
             PostJobPage
@@ -13,4 +30,4 @@ const Post: FC<PostProps> = ({ }) => {
     )
 }
 
-export default Post
+export default PostJobPage

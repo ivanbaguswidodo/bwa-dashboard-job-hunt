@@ -8,6 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ArrowLeftIcon } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select"
+  
 import FieldInput from '@/components/organisms/FieldInput';
 import { Input } from '@/components/ui/input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -135,12 +143,37 @@ const PostJobPage: FC<PostJobPageProps> = ({ }) => {
                                                 placeholder="$1000"
                                                 {...field}
                                             />
-                                        </FormControl>
+                                        </FormControl> 
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
                         </div>
+                    </FieldInput>
+
+                    <FieldInput title="Categories" subtitle="You can select job categories">
+                    <FormField
+          control={form.control}
+          name="categoryId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Select Job Categories</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className='w-[450px]'>
+                    <SelectValue placeholder="Select Job Categories" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="m@example.com">m@example.com</SelectItem>
+                  <SelectItem value="m@google.com">m@google.com</SelectItem>
+                  <SelectItem value="m@support.com">m@support.com</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
                     </FieldInput>
 
                 </form>
